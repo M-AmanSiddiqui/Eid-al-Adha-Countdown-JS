@@ -1,79 +1,209 @@
-
-
-#bg-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-  }
-
-  /* Other Styling */
-  body {
-    text-align: center;
-    color: white;
-    font-family: Arial, sans-serif;
-    background: rgba(0, 0, 0, 0.5); /* Light overlay for readability */
-  }
-
-  .time-box {
-    display: inline-block;
-    margin: 10px;
-    padding: 15px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2);
+/* Global Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
   
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-div {
-    display: flex;
-    gap: 20px;
-}
-
-#days, #hours, #mins, #seconds {
-    font-size: 2rem;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    min-width: 80px;
-    text-align: center;
-}
-
-.time-box {
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: #111;
+    overflow: hidden;
+  }
+  
+  /* Background Video Styling */
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -3;
+  }
+  
+  /* Animated Gradient Overlay with Subtle Movement */
+  #video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+    animation: overlayMove 15s ease-in-out infinite;
+    z-index: -2;
+  }
+  
+  @keyframes overlayMove {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(20px, 20px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  
+  /* Video Controls */
+  #video-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+  }
+  
+  #mute-btn {
+    background: rgba(0, 0, 0, 0.75);
+    border: none;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  #mute-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+  }
+  
+  /* Main Container */
+  .main-container {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.label {
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Title Styling with Neon Glow Effect */
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #fffb, 0 0 20px #fffb, 0 0 30px #ff007f;
+    animation: fadeInDown 1.2s ease-out;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Countdown Container with Enhanced Glassmorphism */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 1.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Individual Countdown Boxes with 3D Hover Effect */
+  .time-box {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 20px 25px;
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .time-box:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    background: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Time Values */
+  .time-box .value {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+  
+  /* Labels */
+  .time-box .label {
     font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-@media (max-width: 600px) {
-    div {
-        flex-direction: column;
-    
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  /* Additional Animated Sparkle Effect on Countdown (Pseudo-element) */
+  .countdown::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
+    animation: sparkle 5s infinite ease-in-out;
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  @keyframes sparkle {
+    0% {
+      transform: scale(0.9) translate(0, 0);
+      opacity: 0.7;
     }
+    50% {
+      transform: scale(1.1) translate(20px, 20px);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.9) translate(0, 0);
+      opacity: 0.7;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
     h1 {
-        margin-top: -50px;
+      font-size: 2.8rem;
     }
-    .label {
-margin-bottom: -20px;
+    .countdown {
+      flex-direction: column;
+      padding: 20px;
     }
-
-}
-
-
-
+    .time-box {
+      min-width: 110px;
+      margin: 10px 0;
+    }
+  }
+  
