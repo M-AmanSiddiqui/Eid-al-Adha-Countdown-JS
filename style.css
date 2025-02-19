@@ -1,4 +1,4 @@
-/* Global Reset & Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@
     overflow: hidden;
   }
   
-  /* Background Video Styling */
+ 
   #bg-video {
     position: fixed;
     top: 0;
@@ -22,8 +22,7 @@
     object-fit: cover;
     z-index: -3;
   }
-  
-  /* Animated Gradient Overlay with Subtle Movement */
+
   #video-overlay {
     position: fixed;
     top: 0;
@@ -47,7 +46,7 @@
     }
   }
   
-  /* Video Controls */
+  
   #video-controls {
     position: fixed;
     top: 20px;
@@ -71,7 +70,7 @@
     transform: scale(1.05);
   }
   
-  /* Main Container */
+  
   .main-container {
     position: relative;
     z-index: 1;
@@ -84,7 +83,6 @@
     text-align: center;
   }
   
-  /* Title Styling with Neon Glow Effect */
   h1 {
     font-size: 4rem;
     margin-bottom: 20px;
@@ -92,6 +90,7 @@
     text-transform: uppercase;
     text-shadow: 0 0 10px #fffb, 0 0 20px #fffb, 0 0 30px #ff007f;
     animation: fadeInDown 1.2s ease-out;
+    text-align: center;
   }
   
   @keyframes fadeInDown {
@@ -105,7 +104,6 @@
     }
   }
   
-  /* Countdown Container with Enhanced Glassmorphism */
   .countdown {
     display: flex;
     justify-content: center;
@@ -130,7 +128,6 @@
     }
   }
   
-  /* Individual Countdown Boxes with 3D Hover Effect */
   .time-box {
     background: rgba(255, 255, 255, 0.18);
     border-radius: 20px;
@@ -149,21 +146,20 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
   }
   
-  /* Time Values */
+  
   .time-box .value {
     font-size: 3rem;
     font-weight: 700;
     margin: 10px 0;
   }
   
-  /* Labels */
+
   .time-box .label {
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 1px;
   }
   
-  /* Additional Animated Sparkle Effect on Countdown (Pseudo-element) */
   .countdown::before {
     content: '';
     position: absolute;
@@ -192,10 +188,13 @@
     }
   }
   
-  /* Responsive Design */
+ 
   @media (max-width: 768px) {
     h1 {
-      font-size: 2.8rem;
+      font-size: 1.1rem;
+      margin-top: 60px;
+      margin-bottom: 30px;
+      text-align: center;
     }
     .countdown {
       flex-direction: column;
